@@ -147,9 +147,11 @@ void vertex(){
 		COLOR = texture(random_colors,vec2(rand_from_seed(alt_seed1),0));
 	} else {
 	vec3 normal = normalize(TRANSFORM[2].xyz);
+	// smooth random rotation that cheaply emulates turbulence rotating the confetti
 	TRANSFORM *= rotationAxisAngle(normalize(VELOCITY), 10.*DELTA *simplex3d_fractal(TRANSFORM[3].xyz));
 	TRANSFORM *= rotationAxisAngle(normal, 10.*DELTA *simplex3d_fractal(float(NUMBER) + TRANSFORM[3].xyz));
 	CUSTOM.y += DELTA;
+	// gravity and drag, drag is proportional to how much confettis are facing the wind hence the dot product
 	VELOCITY += DELTA * gravity - DELTA * drag * abs(dot(VELOCITY,normal))*normalize(VELOCITY) ;
 	VELOCITY += scatter * DELTA * (TRANSFORM * vec4(VELOCITY,0.)).xyz
 	}
