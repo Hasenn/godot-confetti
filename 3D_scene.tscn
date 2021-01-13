@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://confetti_particles_material.tres" type="Material" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+metallic = 0.42
+roughness = 0.31
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 0.25, 0.25 )
+
+[sub_resource type="Environment" id=3]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 0, 1, -13.6457, 10.6425, 0 )
+amount = 1000
+lifetime = 9.95
+explosiveness = 0.71
+randomness = 0.6
+visibility_aabb = AABB( -17.5029, -9.79891, -7.16791, 35.0058, 19.5978, 14.3358 )
+process_material = ExtResource( 1 )
+draw_pass_1 = SubResource( 2 )
+
+[node name="Particles2" type="Particles" parent="."]
+transform = Transform( -1, 1.74846e-07, -8.74228e-08, 1.74846e-07, 1, 0, 8.74228e-08, -1.52855e-14, -1, 21.3543, 10.6425, 0 )
+amount = 1000
+lifetime = 9.95
+explosiveness = 0.71
+randomness = 0.6
+visibility_aabb = AABB( -17.5029, -9.79891, -7.16791, 35.0058, 19.5978, 14.3358 )
+process_material = ExtResource( 1 )
+draw_pass_1 = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 10, 22 )
+environment = SubResource( 3 )
+fov = 62.3
